@@ -1,0 +1,21 @@
+version: "3"
+services:
+  node-app:
+    build: .
+    ports:
+      - "3000:3000"
+    environment:
+      - PORT=3000
+    depends_on:
+      - mongo # makes sure that mongo container goes first before the node app connects to it
+
+  mongo:
+    image: mongo
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=example
+    volumes:
+      - mongo-db:/data/db # makes data persistent even if we teardown the container
+
+volumes:
+  mongo-db:
