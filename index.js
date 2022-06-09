@@ -5,6 +5,11 @@ const app = express()
 const { MONGO_USER, MONGO_PASSWORD, MONGO_IP, MONGO_PORT } = require("./config/config")
 const mongoURL = `mongodb://${MONGO_USER}:${MONGO_PASSWORD}@${MONGO_IP}:${MONGO_PORT}/?authSource=admin`
 
+const postRouter = require("./routers/postRouter")
+const userRouter = require("./routers/userRouter")
+
+const port = process.env.PORT || 3000
+
 const connectWithRetry = () =>
 {
     mongoose.connect(mongoURL, 
@@ -29,8 +34,7 @@ app.get("/", (req, res) =>
     res.send("<h2>This is Kevin</h2>")
 })
 
-const postRouter = require("./routes/postRoute")
 app.use("/api/v1/posts", postRouter)
+app.use("/api/v1/users", userRouter)
 
-const port = process.env.PORT || 3000
 app.listen(port, () => console.log(`listening on port ${port}`))
