@@ -1,5 +1,5 @@
 const express = require("express")
-const mongoose = require('mongoose')
+const mongoose = require("mongoose")
 
 const app = express()
 const { MONGO_USER, MONGO_PASSWORD, MONGO_IP, MONGO_PORT } = require("./config/config")
