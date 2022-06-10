@@ -71,7 +71,7 @@ app.use(express.json())
 app.get("/api/v1", (req, res) => 
 {
     res.send("<h2>This is Kevin</h2>")
-    console.log("ge talon")
+    //console.log("Load balancing...")
 })
 
 app.use("/api/v1/posts", postRouter)
