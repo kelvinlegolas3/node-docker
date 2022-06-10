@@ -3,6 +3,7 @@ const mongoose = require("mongoose")
 const session = require("express-session")
 const app = express()
 const redis = require("redis")
+const cors = require("cors")
 let RedisStore = require("connect-redis")(session)
 
 const 
@@ -47,6 +48,7 @@ const connectWithRetry = () =>
 connectWithRetry()
 
 app.enable("trust proxy") //trust the headers nginx proxy is going to be adding to the request (ex. originating sender's IP address)
+app.use(cors({}))
 app.use(session(
 {
     store: new RedisStore(
@@ -69,6 +71,7 @@ app.use(express.json())
 app.get("/api/v1", (req, res) => 
 {
     res.send("<h2>This is Kevin</h2>")
+    console.log("ge talon")
 })
 
 app.use("/api/v1/posts", postRouter)
