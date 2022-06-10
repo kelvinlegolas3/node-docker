@@ -7,7 +7,6 @@ exports.getAllUsers = async (req, res, next) =>
     {
         const users = await User.find()
 
-        console.log(req.body)
         res.status(200).json(
         {
             status: "success",
@@ -69,7 +68,6 @@ exports.createUser = async (req, res) =>
         })
 
         req.session.user = newUser
-        console.log(req.session)
 
         res.status(200).json(
         {
@@ -83,7 +81,6 @@ exports.createUser = async (req, res) =>
 
     catch(e)
     {
-        console.log(e)
         res.status(400).json(
         {
             status: "fail"
@@ -167,8 +164,6 @@ exports.loginUser = async (req, res) =>
         if (isCorrect)
         {
             req.session.user = user
-            console.log(req.session)
-
             res.status(200).json(
             {
                 status: "success"
