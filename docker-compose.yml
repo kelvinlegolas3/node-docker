@@ -17,5 +17,8 @@ services:
     volumes:
       - mongo-db:/data/db # makes data persistent even if we teardown the container
 
+  redis:
+    image: redis
+
 volumes:
   mongo-db:
