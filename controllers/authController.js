@@ -68,6 +68,9 @@ exports.createUser = async (req, res) =>
             password: hashPassword
         })
 
+        req.session.user = newUser
+        console.log(req.session)
+
         res.status(200).json(
         {
             status: "success",
@@ -163,6 +166,9 @@ exports.loginUser = async (req, res) =>
 
         if (isCorrect)
         {
+            req.session.user = user
+            console.log(req.session)
+
             res.status(200).json(
             {
                 status: "success"
