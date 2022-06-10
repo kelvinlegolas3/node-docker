@@ -46,6 +46,7 @@ const connectWithRetry = () =>
 
 connectWithRetry()
 
+app.enable("trust proxy") //trust the headers nginx proxy is going to be adding to the request (ex. originating sender's IP address)
 app.use(session(
 {
     store: new RedisStore(
@@ -65,7 +66,7 @@ app.use(session(
 
 app.use(express.json())
 
-app.get("/", (req, res) => 
+app.get("/api/v1", (req, res) => 
 {
     res.send("<h2>This is Kevin</h2>")
 })
